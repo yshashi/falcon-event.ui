@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
 
   public loginForm !: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -23,12 +24,12 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(res=>{
-        alert("Login Success");
+        this.toastr.success("Login SuccessFul!", "Success!")
         this.router.navigate(['/main']);
         this.loginForm.reset();
         localStorage.setItem("loggedIn", "true");
       },err=>{
-        alert("Something went wrong!")
+        this.toastr.error("Something went Wrong","Error")
       });
     }
   }

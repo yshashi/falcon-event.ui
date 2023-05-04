@@ -13,11 +13,11 @@
       </ul>
 
       <div *ngIf="!isLogin" class="text-end">
-        <button type="button" class="btn btn-outline-light me-2" routerLink="/login">Login</button>
+        <button  type="button" class="btn btn-outline-light me-2" routerLink="/login">Login</button>
         <button type="button" class="btn btn-warning" routerLink="/register">Sign-up</button>
       </div>
       <div *ngIf="isLogin" class="text-end">
-        <button type="button" class="btn btn-warning" routerLink="/">Logout</button>
+        <button (click)="logout()" type="button" class="btn btn-warning" routerLink="/">Logout</button>
       </div>
     </div>
   </div>

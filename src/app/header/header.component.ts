@@ -15,4 +15,8 @@ export class HeaderComponent implements OnInit {
     this.isLogin = this.auth.isLogin();
   }
 
+  logout(){
+    localStorage.clear();
+  }
+
 }

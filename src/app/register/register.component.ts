@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   public registerForm !: FormGroup;
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private toastr:ToastrService) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -26,10 +27,11 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.valid){
       this.auth.register(this.registerForm.value).subscribe(res=>{
         alert("Registered Success");
+        this.toastr.success("Register Success", "Success")
         this.registerForm.reset();
         this.router.navigate(['login'])
       }, err => {
-        alert("Something went wrong!")
+        this.toastr.error("Something went Wrong", "Error")
       })
     }
   }

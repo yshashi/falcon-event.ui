@@ -10,7 +10,7 @@
       <div class="col-md-7 col-lg-8 mx-auto">
         <form [formGroup]="contactForm" class="needs-validation" >
           <div class="row g-3">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
               <label for="firstName" class="form-label">Name</label>
               <input formControlName="name" type="text" class="form-control" id="firstName" placeholder="" value="" required="">
               <div *ngIf="contactForm.controls['name'].hasError('invalidName')" class="text-danger">
@@ -44,7 +44,7 @@
 
             <div class="col-md-7">
               <label for="zip" class="form-label">Comment</label>
-              <input type="text" formControlName="comment" class="form-control" id="zip" placeholder="" required="">
+              <textarea formControlName="comment" class="form-control" id="zip" placeholder="" required=""></textarea>
               <div *ngIf="contactForm.controls['comment'].hasError('invalidName')" class="text-danger">
                 Invalid character
               </div>

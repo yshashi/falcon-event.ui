@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ContactService {
 
-  baseUrl: string = "http://localhost:5032/api/"
+  baseUrl: string = "https://localhost:7171/api/"
   constructor(private http: HttpClient) { }
 
   addContact(contactObj: any) {
